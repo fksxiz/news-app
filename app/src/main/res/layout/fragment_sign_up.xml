@@ -58,6 +58,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/sh_edittext"
         android:inputType="textEmailAddress"
+        android:paddingHorizontal="5dp"
         />
     
     <TextView
@@ -86,6 +87,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/sh_edittext"
         android:inputType="textPassword"
+        android:paddingHorizontal="5dp"
         />
     
     <com.google.android.material.button.MaterialButton

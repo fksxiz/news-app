@@ -8,8 +8,11 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
+import com.example.supobasetesting.Common.Validator
 import com.example.supobasetesting.R
 import com.google.android.material.button.MaterialButton
+import java.time.Duration
 
 
 class SignUpFragment : Fragment() {
@@ -47,6 +50,14 @@ class SignUpFragment : Fragment() {
     }
 
     private val onNextClickListener = OnClickListener(){
+        if(!Validator.validateEmail(emailEditText.text.toString())){
+            Toast.makeText(requireContext(),"Почта введена не верно!",Toast.LENGTH_SHORT).show()
+            return@OnClickListener
+        }
+        if(passwordEditText.text.toString().isEmpty()){
+            Toast.makeText(requireContext(),"Введите пароль!",Toast.LENGTH_SHORT).show()
+            return@OnClickListener
+        }
         (activity as MainActivity).showFragment(OTPFragment.newInstance())
     }
 

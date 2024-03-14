@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 android {
@@ -46,5 +47,20 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //для ввода otp
     implementation("io.github.chaosleung:pinview:1.4.4")
+
+    //работа с supabase
+    implementation(platform("io.github.jan-tennert.supabase:bom:2.2.1"))
+    implementation("io.github.jan-tennert.supabase:postgrest-kt")
+    implementation("io.ktor:ktor-client-android:2.3.9")
+
+    //lifecycles
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
+    implementation("androidx.fragment:fragment-ktx:1.4.1")
+
+    //serializable date
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
 }
