@@ -11,13 +11,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.ThemeUtils
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.supobasetesting.Common.Validator
 import com.example.supobasetesting.R
+import com.example.supobasetesting.ViewModel.AuthViewModel
+import com.example.supobasetesting.ViewModel.SupabaseViewModel
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
 import java.time.Duration
 
 
 class SignUpFragment : Fragment() {
+
+    private val authViewModel:AuthViewModel by viewModels()
 
     private var isSignUp:Boolean = true
 
@@ -67,7 +74,27 @@ class SignUpFragment : Fragment() {
             Toast.makeText(requireContext(),"Введите пароль!",Toast.LENGTH_SHORT).show()
             return@OnClickListener
         }
-        (activity as MainActivity).showFragment(OTPFragment.newInstance(isSignUp))
+        if(isSignUp){
+            lifecycleScope.launch {
+                authViewModel.createUser(emailEditText.text.toString(),passwordEditText.text.toString()){
+                    if(it){
+                        (activity as MainActivity).showFragment(OTPFragment.newInstance(isSignUp))
+                    }else{
+                        return@createUser
+                    }
+                }
+            }
+        }else{
+            lifecycleScope.launch {
+                authViewModel.loginUser(emailEditText.text.toString(),passwordEditText.text.toString()){
+                    if(it){
+                        (activity as MainActivity).showFragment(MainFragment.newInstance())
+                    }else{
+                        return@loginUser
+                    }
+                }
+            }
+        }
     }
 
     private val onBackClickListener = OnClickListener(){
