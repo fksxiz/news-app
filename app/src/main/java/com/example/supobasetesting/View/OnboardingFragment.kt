@@ -40,10 +40,15 @@ class OnboardingFragment : Fragment() {
             skipButton = findViewById(R.id.skipTextView)
         }
         signUpButton.setOnClickListener(onSignUpClickListener)
+        logInButton.setOnClickListener(onLogInClickListener)
     }
 
     private val onSignUpClickListener = OnClickListener(){
-        (activity as MainActivity).showFragment(SignUpFragment.newInstance())
+        (activity as MainActivity).showFragment(SignUpFragment.newInstance(true))
+    }
+
+    private val onLogInClickListener = OnClickListener(){
+        (activity as MainActivity).showFragment(SignUpFragment.newInstance(false))
     }
 
     companion object {
