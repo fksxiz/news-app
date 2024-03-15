@@ -16,8 +16,11 @@ import com.example.supobasetesting.R
 
 class OTPFragment : Fragment() {
 
+    private var isSignUp:Boolean = true
+
     private lateinit var pinView:PinView
     private lateinit var timeTextView:TextView
+    private lateinit var headerTextView: TextView
 
     private var time:Int=60
 
@@ -41,8 +44,12 @@ class OTPFragment : Fragment() {
         view.apply {
             pinView = findViewById(R.id.otpPinView)
             timeTextView = findViewById(R.id.timerTextView)
+            headerTextView = findViewById(R.id.headerTextView)
         }
         startTimer()
+        if(!isSignUp){
+            headerTextView.setText("Log in")
+        }
     }
 
     fun startTimer(){
@@ -61,10 +68,10 @@ class OTPFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(isSignUpF:Boolean) =
             OTPFragment().apply {
                 arguments = Bundle().apply {
-
+                    isSignUp = isSignUpF
                 }
             }
     }
