@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chaos.view.PinView
 import com.example.supobasetesting.R
 import com.example.supobasetesting.ViewModel.NewsAdapter
+import com.example.supobasetesting.ViewModel.OrdersAdapter
 import com.example.supobasetesting.ViewModel.SupabaseViewModel
 import com.google.android.material.slider.Slider.OnChangeListener
 import kotlinx.coroutines.launch
@@ -34,8 +35,10 @@ class MainFragment : Fragment() {
     private lateinit var pinView: PinView
     private lateinit var politicsTextView: TextView
     private lateinit var newsListView: RecyclerView
+    private lateinit var ordersRecycleView:RecyclerView
 
     private var newsAdapter: NewsAdapter = NewsAdapter()
+    private var ordersAdapter = OrdersAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,15 +61,24 @@ class MainFragment : Fragment() {
         view.apply {
             newsListView = findViewById(R.id.newsListView)
             politicsTextView=findViewById(R.id.politicsTextView)
+            ordersRecycleView = findViewById(R.id.RecyclerView)
         }
         politicsTextView.setOnClickListener(onPoliticsClickListener)
         val lr = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        val lr2 = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         newsListView.layoutManager = lr
         newsListView.adapter = newsAdapter
         getNews()
         viewModel.news.observe(viewLifecycleOwner){
             newsAdapter.news = it
             newsAdapter.notifyDataSetChanged()
+        }
+        ordersRecycleView.layoutManager = lr2
+        ordersRecycleView.adapter = ordersAdapter
+        getOrders()
+        viewModel.orders.observe(viewLifecycleOwner){
+            ordersAdapter.orders =it
+            ordersAdapter.notifyDataSetChanged()
         }
     }
 
@@ -76,6 +88,16 @@ class MainFragment : Fragment() {
             viewModel.getNews {
                 newsAdapter.news=it
                 newsAdapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getOrders(){
+        lifecycleScope.launch {
+            viewModel.getOrders {
+                ordersAdapter.orders = it
+                ordersAdapter.notifyDataSetChanged()
             }
         }
     }
