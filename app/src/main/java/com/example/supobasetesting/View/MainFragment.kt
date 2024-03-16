@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chaos.view.PinView
+import com.example.supobasetesting.ProfileFragment
 import com.example.supobasetesting.R
 import com.example.supobasetesting.ViewModel.NewsAdapter
 import com.example.supobasetesting.ViewModel.OrdersAdapter
@@ -36,6 +38,7 @@ class MainFragment : Fragment() {
     private lateinit var politicsTextView: TextView
     private lateinit var newsListView: RecyclerView
     private lateinit var ordersRecycleView:RecyclerView
+    private lateinit var profileButton:ImageButton
 
     private var newsAdapter: NewsAdapter = NewsAdapter()
     private var ordersAdapter = OrdersAdapter()
@@ -62,7 +65,9 @@ class MainFragment : Fragment() {
             newsListView = findViewById(R.id.newsListView)
             politicsTextView=findViewById(R.id.politicsTextView)
             ordersRecycleView = findViewById(R.id.RecyclerView)
+            profileButton = findViewById(R.id.profileButton)
         }
+        profileButton.setOnClickListener(onProfileClickListener)
         politicsTextView.setOnClickListener(onPoliticsClickListener)
         val lr = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val lr2 = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
@@ -111,6 +116,10 @@ class MainFragment : Fragment() {
         )
         startActivity(intent)*/
 
+    }
+
+    private val onProfileClickListener = OnClickListener {
+        (activity as MainActivity).showFragment(ProfileFragment.newInstance())
     }
 
     companion object {
