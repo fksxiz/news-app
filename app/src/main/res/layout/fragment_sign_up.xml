@@ -90,6 +90,19 @@
         android:inputType="textPassword"
         android:paddingHorizontal="5dp"
         />
+
+    <CheckBox
+        android:id="@+id/rememberCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Запомнить"
+        android:textSize="15sp"
+        android:textColor="@color/blackText"
+        android:fontFamily="@font/interlight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        android:layout_marginHorizontal="24dp"
+        />
     
     <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
