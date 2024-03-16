@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragment">
+
+    <View
+        android:id="@+id/menuView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/lightPink"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newsButton"
+        android:src="@drawable/ic_news"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@id/menuView"
+        app:layout_constraintBottom_toBottomOf="@id/menuView"
+        app:layout_constraintStart_toStartOf="@id/menuView"
+        app:layout_constraintEnd_toStartOf="@id/profileButton"
+        android:padding="10dp"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileButton"
+        android:src="@drawable/ic_profile"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@id/menuView"
+        app:layout_constraintBottom_toBottomOf="@id/menuView"
+        app:layout_constraintStart_toEndOf="@id/newsButton"
+        app:layout_constraintEnd_toEndOf="@id/menuView"
+        android:padding="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
