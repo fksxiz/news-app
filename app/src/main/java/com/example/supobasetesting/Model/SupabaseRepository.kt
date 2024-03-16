@@ -50,7 +50,7 @@ class SupabaseRepository {
             com.example.supobasetesting.Common.Email.email=userEmail
             callback(true)
         }catch (e:Exception){
-            Log.e("create user error",e.message.toString())
+            Log.e("login user error",e.message.toString())
             callback(false)
         }
     }

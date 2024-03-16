@@ -41,6 +41,11 @@ class OnboardingFragment : Fragment() {
         }
         signUpButton.setOnClickListener(onSignUpClickListener)
         logInButton.setOnClickListener(onLogInClickListener)
+        skipButton.setOnClickListener(onSkipClickListener)
+    }
+
+    private val onSkipClickListener= OnClickListener {
+        (activity as MainActivity).showFragment(MainFragment.newInstance())
     }
 
     private val onSignUpClickListener = OnClickListener(){
