@@ -2,6 +2,7 @@ package com.example.supobasetesting.Model
 
 import android.util.Log
 import com.example.supobasetesting.Common.News
+import com.example.supobasetesting.Common.Order
 import com.example.supobasetesting.Common.Token
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
@@ -50,7 +51,7 @@ class SupabaseRepository {
             com.example.supobasetesting.Common.Email.email=userEmail
             callback(true)
         }catch (e:Exception){
-            Log.e("create user error",e.message.toString())
+            Log.e("login user error",e.message.toString())
             callback(false)
         }
     }
@@ -77,5 +78,9 @@ class SupabaseRepository {
             Log.e("OTP Resend Exception",e.message.toString())
             callback(false)
         }
+    }
+
+    suspend fun getOrders(callback: (List<Order>) -> Unit){
+        callback(supabase.postgrest["Orders"].select().decodeList<Order>())
     }
 }
