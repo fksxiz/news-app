@@ -43,13 +43,28 @@
             tools:listitem="@layout/news_item"
             />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/newsListView"
+        <ScrollView
+            app:layout_constraintTop_toBottomOf="@id/newsListView"
             app:layout_constraintBottom_toTopOf="@id/menuView"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+                <com.google.android.gms.maps.MapView
+                    android:background="@color/lightGray"
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    app:layout_constraintTop_toBottomOf="@id/RecyclerView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
         <View
             android:id="@+id/menuView"

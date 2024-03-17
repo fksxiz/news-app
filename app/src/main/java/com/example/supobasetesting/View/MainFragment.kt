@@ -112,12 +112,10 @@ class MainFragment : Fragment() {
 
     private val onPoliticsClickListener = OnClickListener{
         //val url = File("file.pdf")
-        val file = File(requireContext().filesDir,"file")
-        copyAssetToFile("file",file)
-        Toast.makeText(requireContext(),file.toString(),Toast.LENGTH_SHORT).show()
+        val fileUri = Uri.parse("https://github.com/bumptech/glide")
         val intent = Intent(
-            Intent.ACTION_ANSWER,
-            Uri.fromFile(file)
+            Intent.ACTION_VIEW,
+            fileUri
         )
         startActivity(intent)
 
